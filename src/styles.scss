@@ -1,0 +1,31 @@
+@font-face {
+  font-family: 'inter-light';
+  src        :
+    url('./assets/font/inter/inter-light.woff') format('woff'),
+    url('./assets/font/inter/inter-light.woff2') format('woff2'),
+    url('./assets/font/inter/inter-light.eot') format('eot'),
+    url('./assets/font/inter/inter-light.otf') format('otf'),
+    url('./assets/font/inter/inter-light.ttf') format('ttf');
+}
+
+@font-face {
+  font-family: 'inter';
+  src        :
+    url('./assets/font/inter/inter.woff') format('woff'),
+    url('./assets/font/inter/inter.woff2') format('woff2'),
+    url('./assets/font/inter/inter.eot') format('eot'),
+    url('./assets/font/inter/inter.otf') format('otf'),
+    url('./assets/font/inter/inter.ttf') format('ttf');
+}
+
+* {
+  font-family: 'inter-light';
+  outline    : none;
+}
+
+:root {
+  --theme-marvel     : #7a0201;
+  --theme-red        : #e62429;
+  --theme-golden     : #daa520;
+  --theme-black-light: #151515;
+}

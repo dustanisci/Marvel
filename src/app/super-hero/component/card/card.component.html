@@ -1,0 +1,10 @@
+<div (click)="id.emit(superHero.id)" class="card d-flex align-items-stretch">
+  <div class="container-img">
+    <label class="position-absolute font-weight-bold mt-1 ml-1">{{ superHero.earth }}</label>
+    <div class="img" [style.background-image]="'url('+(superHero.urlCover ? superHero.urlCover : '')+')'"></div>
+  </div>
+  <content class="align-items-center position-relative">
+    <label class="m-0 position-absolute p-3">{{ superHero.name }}</label>
+    <label class="position-absolute p-3">{{ superHero.codename }}</label>
+  </content>
+</div>
