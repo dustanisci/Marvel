@@ -1,12 +1,3 @@
-header {
-  background   : var(--theme-marvel);
-  border-bottom: 5px solid var(--theme-red);
-
-  img {
-    width: 150px;
-  }
-}
-
 main {
   .container-add {
     button {
@@ -50,7 +41,7 @@ main {
 
     .custom-select {
       box-shadow: none;
-      width     : 100px;
+      width     : 120px;
 
       @media only screen and (max-width: 767px) {
         width: 100%;
@@ -59,40 +50,10 @@ main {
   }
 
   .container-pagination {
-    .page-item {
-      z-index: 0;
-
-      @media only screen and (max-width: 991px) {
-        width: 40px;
-      }
-
-      a {
-        color     : #FFF;
-        background: var(--theme-red);
-        transition: 250ms ease;
-        cursor    : pointer;
-        border    : 1px solid rgba(0, 0, 0, 0.14);
-
-        @media only screen and (max-width: 991px) {
-          font-size: 20pt;
-        }
-
-        &:hover {
-          background: var(--theme-black-light);
-          transition: 250ms ease;
-        }
-      }
-
-      &.active {
-        a {
-          background: var(--theme-black-light);
-
-          &:focus {
-            background: var(--theme-black-light);
-          }
-        }
+    .ngx-pagination {
+      li.current {
+        background: var(--theme-red) !important;
       }
     }
   }
-
 }

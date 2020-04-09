@@ -18,6 +18,12 @@
     url('./assets/font/inter/inter.ttf') format('ttf');
 }
 
+body,html{
+  height:100%;
+  position: relative;
+  scroll-behavior: smooth;
+}
+
 * {
   font-family: 'inter-light';
   outline    : none;

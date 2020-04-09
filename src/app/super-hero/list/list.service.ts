@@ -12,8 +12,8 @@ export class ListService {
 
   constructor(private apiService: ApiService) { }
 
-  public superHeroList(page:number = 0): Observable<object> {
-    return this.apiService.get(`${apiList.superHeroList}?page=${page}&size=1`)
+  public superHeroList(page: number = 0, search: string = '', filter: string = ''): Observable<object> {
+    return this.apiService.get(`${apiList.superHeroList}?page=${page}&size=1&search=${search}&sort=name,codename,${filter}`)
       .pipe(map((resp: ListReponse) => {
         return {
           result: resp.content.map((superHeroResponse: ListSuperHeroResponse) => ({

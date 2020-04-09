@@ -8,6 +8,10 @@ import { CreateEditComponent } from './super-hero/create-edit/create-edit.compon
 import { CardComponent } from './super-hero/component/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
 import { LoaderComponent } from './super-hero/component/loader/loader.component';
+import { FormsModule } from '@angular/forms';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { HeaderComponent } from './super-hero/component/header/header.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -16,11 +20,15 @@ import { LoaderComponent } from './super-hero/component/loader/loader.component'
     CreateEditComponent,
     CardComponent,
     LoaderComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule,
+    NgxPaginationModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

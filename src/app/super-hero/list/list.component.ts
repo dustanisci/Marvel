@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ListSuperHero, ListResult } from './model/list-super-hero';
 import { ListService } from './list.service';
 import { Router } from '@angular/router';
@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-list',
   templateUrl: './list.component.html',
-  styleUrls: ['./list.component.scss']
+  styleUrls: ['./list.component.scss'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ListComponent implements OnInit {
 
@@ -14,6 +15,10 @@ export class ListComponent implements OnInit {
   public loader: boolean;
   public totalPages: number;
   public currentPage: number;
+  public search: string;
+  public pagination: number[] = [];
+  public totalElements: number;
+  public filter: string = "";
 
   constructor(
     private listService: ListService,
@@ -26,16 +31,28 @@ export class ListComponent implements OnInit {
 
   public dataSuperHero(): void {
     this.loader = true;
-    this.listService.superHeroList(this.currentPage).subscribe((listResult: ListResult) => {
+    this.listService.superHeroList(this.currentPage - 1, this.search, this.filter).subscribe((listResult: ListResult) => {
       this.listSuperHero = listResult.result;
       this.totalPages = listResult.totalPages;
+      this.totalElements = listResult.totalElements;
       this.loader = false;
     }, () => {
       this.loader = false;
     });
   }
 
-  public edit(id: number) {
-    this.router.navigate([`edit/${id}`]);
+  public setSearch(search: string) {
+    this.currentPage = 0;
+    this.search = search;
+    this.dataSuperHero();
+  }
+
+  public routeCreateEdit(id: number | string = null) {
+    id ? this.router.navigate([`edit/${id}`]) : this.router.navigate([`create`]);
+  }
+
+  public pageChanged(currentPage: number){
+    this.currentPage = currentPage;
+    this.dataSuperHero();
   }
 }
