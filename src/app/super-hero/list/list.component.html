@@ -1,45 +1,39 @@
 <div id="list-super-hero" class="container-fluid">
-  <div class="row vh-100 d-flex flex-column flex-grow-1">
+  <div class="row vh-100 flex-grow-1">
     <c-header class="w-100"></c-header>
 
     <main class="container-fluid d-flex flex-grow-1">
       <div class="row flex-grow-1">
         <div class="col-12 col-sm-12 col-lg-12 mt-3">
           <div class="row">
-
-
             <div class="mt-2 mt-md-0 mt-lg-0 col-12 col-sm-3 col-md-2 container-add d-flex align-items-end">
               <button (click)="routeCreateEdit()"
                 class="pt-1 pb-1 pl-4 pr-4 ml-auto mr-auto d-block text-uppercase position-relative font-weight-bold">Novo</button>
             </div>
-
-
             <div class="mt-4 mt-sm-0 col-12 col-sm-6 col-md-8 container-search d-inline position-relative">
               <i class="icon-search mr-2 position-absolute"></i>
               <input [ngModel]="search" (ngModelChange)="setSearch($event)" type="text"
                 class="w-100 position-relative text-uppercase font-weight-bold" />
             </div>
-
-
             <div
               class="mt-4 mt-sm-0 col-12 col-sm-3 col-md-2 container-filter d-flex align-items-end justify-content-end">
-              <select [ngModel]="filter" (ngModelChange)="filter = $event; dataSuperHero()" class="custom-select position-relative">
-                <option value="">Selecione</option>
-                <option value="ASC">A-Z</option>
-                <option value="DESC">Z-A</option>
-                <option value="EARTH">Terra</option>
+              <select [ngModel]="filter" (ngModelChange)="filter = $event; currentPage = 0; dataSuperHero();"
+                class="custom-select position-relative">
+                <option value="0">Selecione</option>
+                <option value="1">A-Z</option>
+                <option value="2">Z-A</option>
+                <option value="3">Terra</option>
               </select>
             </div>
-
-
           </div>
         </div>
 
         <div class="col-12 col-sm-12 mt-3">
           <div class="row">
             <c-card
-              *ngFor="let superHero of listSuperHero | paginate: { itemsPerPage: 1, currentPage: currentPage, totalItems: totalElements }"
-              [superHero]="superHero" (id)="routeCreateEdit($event)" class="col-6 col-sm-4 col-md-3 col-xl-2 mt-4">
+              *ngFor="let superHero of listSuperHero | paginate: { itemsPerPage: 18, currentPage: currentPage, totalItems: totalElements }"
+              [superHero]="superHero" (actionClick)="$event.typeClick === 0 ? routeCreateEdit($event.id) : deleteSuperHero($event.id)"
+              class="col-6 col-sm-4 col-md-3 col-xl-2 mt-4">
             </c-card>
           </div>
         </div>
@@ -55,10 +49,8 @@
           </div>
         </div>
 
-
       </div>
     </main>
-
 
     <c-loader *ngIf="loader"></c-loader>
   </div>

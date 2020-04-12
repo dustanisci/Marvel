@@ -14,6 +14,12 @@ export interface ListSuperHeroResponse {
 }
 
 export interface GalleryResponse {
-  id: number;
   url: string;
+}
+
+export enum Filter {
+  NONE,
+  ASC,
+  DESC,
+  EARTH
 }

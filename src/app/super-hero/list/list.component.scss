@@ -48,12 +48,4 @@ main {
       }
     }
   }
-
-  .container-pagination {
-    .ngx-pagination {
-      li.current {
-        background: var(--theme-red) !important;
-      }
-    }
-  }
 }

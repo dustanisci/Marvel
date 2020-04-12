@@ -1,0 +1,9 @@
+.container-pagination {
+  pagination-controls {
+    .ngx-pagination {
+      li.current {
+        background: var(--theme-red);
+      }
+    }
+  }
+}

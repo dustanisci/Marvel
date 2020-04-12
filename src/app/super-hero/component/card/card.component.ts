@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { ListSuperHero } from '../../list/model/list-super-hero';
+import { CardClick, TypeClick } from './model/card-click';
 
 @Component({
   selector: 'c-card',
@@ -9,11 +10,16 @@ import { ListSuperHero } from '../../list/model/list-super-hero';
 export class CardComponent implements OnInit {
 
   @Input() superHero: ListSuperHero;
-  @Output() id: EventEmitter<number> = new EventEmitter();
+  @Output() actionClick: EventEmitter<CardClick> = new EventEmitter();
+  public typeClick = TypeClick;
 
   constructor() { }
 
   ngOnInit(): void {
+  }
+
+  public action(typeClick: TypeClick): void {
+    this.actionClick.emit({ 'id': this.superHero.id, 'typeClick': typeClick });
   }
 
 }

@@ -1,3 +1,6 @@
+@import './assets/scss/pagination-controls.scss';
+@import './assets/scss/ngb-carousel.scss';
+
 @font-face {
   font-family: 'inter-light';
   src        :
@@ -9,18 +12,30 @@
 }
 
 @font-face {
-  font-family: 'inter';
+  font-family: 'creative-block';
   src        :
-    url('./assets/font/inter/inter.woff') format('woff'),
-    url('./assets/font/inter/inter.woff2') format('woff2'),
-    url('./assets/font/inter/inter.eot') format('eot'),
-    url('./assets/font/inter/inter.otf') format('otf'),
-    url('./assets/font/inter/inter.ttf') format('ttf');
+    url('./assets/font/creative-block/creative-block.eot') format('eot'),
+    url('./assets/font/creative-block/creative-block.otf') format('otf'),
+    url('./assets/font/creative-block/creative-block.ttf') format('ttf'),
+    url('./assets/font/creative-block/creative-block.woff') format('woff'),
+    url('./assets/font/creative-block/creative-block.woff2') format('woff2'),
 }
 
-body,html{
-  height:100%;
-  position: relative;
+@font-face {
+  font-family: 'heroes-legend';
+  src        :
+    url('./assets/font/heroes-legend/heroes-legend.eot') format('eot'),
+    url('./assets/font/heroes-legend/heroes-legend.otf') format('otf'),
+    url('./assets/font/heroes-legend/heroes-legend.ttf') format('ttf'),
+    url('./assets/font/heroes-legend/heroes-legend.woff') format('woff'),
+    url('./assets/font/heroes-legend/heroes-legend.woff2') format('woff2'),
+}
+
+
+body,
+html {
+  height         : 100%;
+  position       : relative;
   scroll-behavior: smooth;
 }
 

@@ -1,25 +1,161 @@
-<c-header></c-header>
-<main class="container-fluid">
+<main class="container-fluid vh-100 d-flex flex-column align-items-stretch">
   <div class="row">
+    <c-header class="w-100"></c-header>
+  </div>
 
-    <div class="mt-3 col-12 col-sm-12 col-md-6">
-      
+  <div class="row flex-grow-1 pr-4 pl-4">
+    <div class="container-fluid d-flex flex-column align-items-stretch">
+      <c-loader *ngIf="loader"></c-loader>
 
-      <ngb-carousel>
-        <ng-template ngbSlide>
-          <div class="picsum-img-wrapper">
-            <img [src]="'./assets/img/super-hero/1586220624879.jpg'" alt="Random first slide">
+      <div class="row flex-grow-1 align-items-center position-relative">
+        <div class="container-buttons position-absolute">
+          <button *ngIf="!enabledFields || !route.snapshot.paramMap.get('id')" (click)="routeGoBack()" type="button"
+            class="mr-2 btn btn-secondary">
+            <i class="icon-arrow-left mr-1"></i>
+            Voltar
+          </button>
+
+          <button *ngIf="route.snapshot.paramMap.get('id') && !enabledFields" (click)="enabledFields = true"
+            type="button" class="mr-2 btn btn-warning">
+            <i class="icon-edit mr-1"></i>
+            Editar
+          </button>
+
+          <button *ngIf="enabledFields && route.snapshot.paramMap.get('id')" (click)="enabledFields = false"
+            type="button" class="mr-2 btn btn-danger">
+            <i class="icon-remove mr-1"></i>
+            Cancelar
+          </button>
+
+          <button *ngIf="enabledFields" (click)="save()" [disabled]="!superHero.name" type="button"
+            class="btn btn-success">
+            <i class="icon-save mr-1"></i>
+            Salvar
+          </button>
+        </div>
+
+        <div class="container-gallery mt-5 pt-4 mt-lg-0 pt-lg-0 col-12 col-sm-12 col-md-6 col-lg-4">
+
+          <div *ngIf="superHero.galleries && !(superHero.galleries | keyvalue).length && !enabledFields"
+            class="photo-not-found bg-white border border-dark mt-4 mb-4 d-flex align-items-center justify-content-center flex-column">
+            <i class="icon-picture mb-2"></i>
+            <label class="font-weight-bold">Sem foto</label>
           </div>
-        </ng-template>
-      </ngb-carousel>
 
+          <div *ngIf="superHero.galleries && !(superHero.galleries | keyvalue).length && enabledFields"
+            class="upload-foto border border-dark mt-4 mb-4 d-flex align-items-center justify-content-center">
+            <i class="icon-upload-alt"></i>
+          </div>
 
+          <ngb-carousel *ngIf="superHero.galleries" class="mt-2" [interval]="'0'">
+            <ng-template *ngFor="let gallery of superHero.galleries | keyvalue; let i = index;" ngbSlide>
+              <div class="picsum-img-wrapper position-relative">
+                <i *ngIf="enabledFields && !statusPreviewGalleryDelete[i]"
+                  (click)="previewDeleteGallery(gallery.value.id); statusPreviewGalleryDelete[i] = true;"
+                  class="icon-trash position-absolute p-2 text-white"></i>
 
+                <i *ngIf="enabledFields && statusPreviewGalleryDelete[i]"
+                  (click)="postponedDeleteGallery(gallery.value.id); statusPreviewGalleryDelete[i] = false;"
+                  class="icon-remove position-absolute p-2 text-white"></i>
+                <img class="w-100" [ngStyle]="{'opacity': statusPreviewGalleryDelete[i] ? '0.6' : '1'}"
+                  [src]="gallery.value.url" />
+              </div>
+            </ng-template>
+          </ngb-carousel>
+
+          <div *ngIf="superHero.galleries && (superHero.galleries | keyvalue).length && enabledFields"
+            class="file mt-2 text-center">
+            <input (change)="setGallery($event)" class="p-2" type="file" accept=".jpg, .jpeg, .png" multiple />
+          </div>
+        </div>
+
+        <div *ngIf="!enabledFields"
+          class="container-labels col-12 col-sm-6 col-md-6 col-lg-7 offset-lg-1 mt-5 mb-5 d-flex flex-column justify-content-center">
+
+          <div class="mt-2 d-flex">
+            <label class="name">{{ superHero.name }}</label>
+          </div>
+
+          <div class="mt-2 d-flex">
+            <label class="codename">{{ superHero.codename }}</label>
+          </div>
+
+          <div class="mt-4 d-flex align-items-center">
+            <label class="font-weight-bold mr-2">Terra:</label>
+            <label>{{ superHero.earth }}</label>
+          </div>
+
+          <div class="mt-2 d-flex align-items-center">
+            <label class="font-weight-bold mr-2">Raça:</label>
+            <label>{{ superHero.race }}</label>
+          </div>
+
+          <div class="mt-2 d-flex align-items-center">
+            <label class="font-weight-bold mr-2">1ª Aparição:</label>
+            <label>{{ superHero.firstShow }}</label>
+          </div>
+
+          <div class="mt-2 d-flex align-items-center">
+            <label class="font-weight-bold mr-2">Equipes:</label>
+            <label>{{ superHero.team }}</label>
+          </div>
+
+          <div class="mt-2 d-flex align-items-center">
+            <label class="font-weight-bold mr-2">Profissão:</label>
+            <label>{{ superHero.job }}</label>
+          </div>
+
+          <div class="mt-2 d-flex align-items-start">
+            <label class="font-weight-bold mr-2">Genealogia:</label>
+            <pre class="w-100">{{ superHero.genealogy }}</pre>
+          </div>
+
+        </div>
+
+        <div *ngIf="enabledFields"
+          class="container-fields col-12 col-sm-6 col-md-6 col-lg-7 offset-lg-1 mt-5 mb-5 d-flex flex-column justify-content-center">
+          <div class="mt-2 d-flex">
+            <label class="font-weight-bold mr-2 name">Nome</label>
+            <input class="bg-white p-1 flex-grow-1" type="text" [(ngModel)]="superHero.name" />
+          </div>
+
+          <div class="mt-2 d-flex">
+            <label class="font-weight-bold mr-2">Codinome</label>
+            <textarea class="bg-white p-1 flex-grow-1 codename" type="text" [(ngModel)]="superHero.codename"></textarea>
+          </div>
+
+          <div class="mt-2 d-flex">
+            <label class="font-weight-bold mr-2">Terra</label>
+            <input class="bg-white p-1 flex-grow-1" type="text" [(ngModel)]="superHero.earth" />
+          </div>
+
+          <div class="mt-2 d-flex">
+            <label class="font-weight-bold mr-2">Raça</label>
+            <input class="bg-white p-1 flex-grow-1" type="text" [(ngModel)]="superHero.race" />
+          </div>
+
+          <div class="mt-2 d-flex">
+            <label class="font-weight-bold mr-2">1ª Aparição</label>
+            <input class="bg-white p-1 flex-grow-1" type="text" [(ngModel)]="superHero.firstShow" />
+          </div>
+
+          <div class="mt-2 d-flex">
+            <label class="font-weight-bold mr-2">Equipes</label>
+            <input class="bg-white p-1 flex-grow-1" type="text" [(ngModel)]="superHero.team" />
+          </div>
+
+          <div class="mt-2 d-flex">
+            <label class="font-weight-bold mr-2">Profissão</label>
+            <input class="bg-white p-1 flex-grow-1" type="text" [(ngModel)]="superHero.job" />
+          </div>
+
+          <div class="mt-2 d-flex">
+            <label class="font-weight-bold mr-2">Genealogia</label>
+            <textarea class="bg-white p-1 flex-grow-1 genealogy" [(ngModel)]="superHero.genealogy"></textarea>
+          </div>
+        </div>
+
+      </div>
     </div>
-
-    <div class="mt-3 col-12 col-sm-12 col-md-6">
-
-    </div>
-
   </div>
 </main>
