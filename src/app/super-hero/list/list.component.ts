@@ -3,8 +3,10 @@ import { ListSuperHero, ListResult } from './model/list-super-hero';
 import { ListService } from './list.service';
 import { Router } from '@angular/router';
 import { Filter } from './model/list-response';
-import { switchMap } from 'rxjs/operators';
+import { switchMap, catchError } from 'rxjs/operators';
 import { of, Observable, Subscription } from 'rxjs';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalConfirmComponent } from '../component/modal/modal-confirm/modal-confirm.component';
 
 @Component({
   selector: 'app-list',
@@ -24,7 +26,8 @@ export class ListComponent implements OnInit {
 
   constructor(
     private listService: ListService,
-    private router: Router) { }
+    private router: Router,
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
     this.currentPage = 0;
@@ -32,10 +35,7 @@ export class ListComponent implements OnInit {
 
     this.dataSuperHero().subscribe(() => {
       this.loader = false;
-    }, () => {
-      this.loader = false;
     });
-
   }
 
   public dataSuperHero(): Observable<Subscription> {
@@ -46,12 +46,17 @@ export class ListComponent implements OnInit {
     }));
   }
 
-  public deleteSuperHero(id: number): void {
-    this.loader = true;
-    this.listService.deleteSuperHero([id]).pipe(switchMap(() => this.dataSuperHero()))
+  public deleteSuperHero(id: number, name: string): void {
+    const modalConfirmRef = this.modalService.open(ModalConfirmComponent, { size: 'md', centered: true });
+    modalConfirmRef.componentInstance.msg = `Tem certeza que deseja excluir ${name}?`;
+
+    modalConfirmRef.componentInstance.confirm
+      .pipe(switchMap(() => {
+        this.loader = true;
+        return this.listService.deleteSuperHero([id])
+      }))
+      .pipe(switchMap(() => this.dataSuperHero()))
       .subscribe(() => {
-        this.loader = false;
-      }, () => {
         this.loader = false;
       });
   }

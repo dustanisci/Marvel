@@ -47,9 +47,13 @@ main {
       margin-top: -7px;
     }
 
+    .upload-foto {
+      cursor: pointer;
+    }
+
     .upload-foto,
     .photo-not-found {
-      height    : 300px;
+      height: 300px;
 
       .icon-picture {
         font-size: 50px;

@@ -1,5 +1,5 @@
 <div class="card d-flex align-items-stretch">
-  <div (click)="action(typeClick.VIEW)" class="container-img position-relative">
+  <div (click)="actionClick.emit(typeClick.VIEW)" class="container-img position-relative">
     <label class="position-absolute font-weight-bold mt-1 ml-1">{{ superHero.earth }}</label>
     <div *ngIf="superHero.urlCover" class="img" [style.background-image]="'url('+superHero.urlCover+')'"></div>
     <div *ngIf="!superHero.urlCover" class="bg-white img-not-found d-flex justify-content-center align-items-center">
@@ -7,9 +7,9 @@
     </div>
   </div>
 
-  <i (click)="action(typeClick.DELETE)" class="icon-trash position-absolute text-white p-1"></i>
+  <i (click)="actionClick.emit(typeClick.DELETE)" class="icon-trash position-absolute text-white p-1"></i>
 
-  <content (click)="action(typeClick.VIEW)" class="align-items-center position-relative">
+  <content (click)="actionClick.emit(typeClick.VIEW)" class="align-items-center position-relative">
     <label class="text-white m-0 position-absolute p-3">{{ superHero.name }}</label>
     <label class="position-absolute p-3">{{ superHero.codename }}</label>
   </content>

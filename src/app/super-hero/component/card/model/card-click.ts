@@ -1,5 +1,4 @@
 export interface CardClick {
-  id: number;
   typeClick: TypeClick;
 }
 

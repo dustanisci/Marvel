@@ -21,7 +21,7 @@ main {
     input {
       border       : 0;
       border-bottom: 2px solid var(--theme-black-light);
-      padding      : 4px 10px 5px 25px;
+      padding      : 4px 30px 5px 25px;
       transition   : linear 300ms;
 
       &:focus {
@@ -30,9 +30,19 @@ main {
       }
     }
 
-    i {
+    i.icon-search {
       margin-top: 5px;
       z-index   : 1;
+    }
+
+    i.icon-remove{
+      right: 15px;
+      border: 2px solid var(--theme-black-light);
+      border-radius: 39px;
+      padding: 5px 6px;
+      font-size: 9px;
+      margin-top: 4px;
+      cursor:pointer;
     }
   }
 

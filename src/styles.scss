@@ -1,6 +1,7 @@
 @import './assets/scss/pagination-controls.scss';
 @import './assets/scss/ngb-carousel.scss';
 
+
 @font-face {
   font-family: 'inter-light';
   src        :
@@ -9,16 +10,6 @@
     url('./assets/font/inter/inter-light.eot') format('eot'),
     url('./assets/font/inter/inter-light.otf') format('otf'),
     url('./assets/font/inter/inter-light.ttf') format('ttf');
-}
-
-@font-face {
-  font-family: 'creative-block';
-  src        :
-    url('./assets/font/creative-block/creative-block.eot') format('eot'),
-    url('./assets/font/creative-block/creative-block.otf') format('otf'),
-    url('./assets/font/creative-block/creative-block.ttf') format('ttf'),
-    url('./assets/font/creative-block/creative-block.woff') format('woff'),
-    url('./assets/font/creative-block/creative-block.woff2') format('woff2'),
 }
 
 @font-face {

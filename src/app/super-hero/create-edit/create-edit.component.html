@@ -42,8 +42,9 @@
             <label class="font-weight-bold">Sem foto</label>
           </div>
 
-          <div *ngIf="superHero.galleries && !(superHero.galleries | keyvalue).length && enabledFields"
-            class="upload-foto border border-dark mt-4 mb-4 d-flex align-items-center justify-content-center">
+          <div *ngIf="(!superHero.galleries || !(superHero.galleries | keyvalue).length) && enabledFields"
+            (click)="simulateInputFile()"
+            class="upload-foto bg-white border border-dark mt-4 mb-4 d-flex align-items-center justify-content-center">
             <i class="icon-upload-alt"></i>
           </div>
 
@@ -63,9 +64,10 @@
             </ng-template>
           </ngb-carousel>
 
-          <div *ngIf="superHero.galleries && (superHero.galleries | keyvalue).length && enabledFields"
-            class="file mt-2 text-center">
-            <input (change)="setGallery($event)" class="p-2" type="file" accept=".jpg, .jpeg, .png" multiple />
+          <div [ngClass]="{'d-block': superHero.galleries && (superHero.galleries | keyvalue).length && enabledFields }"
+            class="file d-none mt-2 text-center">
+            <input #inputFile (change)="images = $event.target.files" class="p-2" type="file" accept=".jpg, .jpeg, .png"
+              multiple />
           </div>
         </div>
 
@@ -113,7 +115,7 @@
         </div>
 
         <div *ngIf="enabledFields"
-          class="container-fields col-12 col-sm-6 col-md-6 col-lg-7 offset-lg-1 mt-5 mb-5 d-flex flex-column justify-content-center">
+          class="container-fields col-12 col-sm-12 col-md-6 col-lg-7 offset-lg-1 mt-5 mb-5 d-flex flex-column justify-content-center">
           <div class="mt-2 d-flex">
             <label class="font-weight-bold mr-2 name">Nome</label>
             <input class="bg-white p-1 flex-grow-1" type="text" [(ngModel)]="superHero.name" />

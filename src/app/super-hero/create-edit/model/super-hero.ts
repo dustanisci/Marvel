@@ -16,8 +16,3 @@ export interface SuperHero {
 export interface ResponseSuperHero {
   result: SuperHero;
 }
-
-export interface GallerySuperHero {
-  idSuperHero: number;
-  images: File[];
-}

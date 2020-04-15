@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { CreateEditService } from './create-edit.service';
-import { SuperHero, GallerySuperHero } from './model/super-hero';
+import { SuperHero } from './model/super-hero';
 import { switchMap } from 'rxjs/operators';
-import { forkJoin } from 'rxjs';
+import { forkJoin, of, Observable, Subscription } from 'rxjs';
+import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { ModalConfirmComponent } from '../component/modal/modal-confirm/modal-confirm.component';
 
 @Component({
   selector: 'app-create-edit',
@@ -17,7 +19,10 @@ export class CreateEditComponent implements OnInit {
   public enabledFields: boolean;
   public previewGalleryDelete: number[] = [];
   public statusPreviewGalleryDelete: boolean[] = [];
-  public gallery: GallerySuperHero = {} as GallerySuperHero;
+  public images: FileList;
+  public formData = new FormData();
+
+  @ViewChild('inputFile', { read: ElementRef }) inputFile: ElementRef;
 
   constructor(
     private createEditService: CreateEditService,
@@ -25,18 +30,24 @@ export class CreateEditComponent implements OnInit {
     public route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.snapshot.paramMap.get('id') ? this.dataSuperHero() : this.enabledFields = true;
+    if (this.route.snapshot.paramMap.get('id')) {
+      this.loader = true;
+      this.dataSuperHero(Number(this.route.snapshot.paramMap.get('id'))).subscribe(() => {
+        this.loader = false;
+      });
+
+    } else {
+      this.enabledFields = true;
+    }
   }
 
-  public dataSuperHero(): void {
+  public dataSuperHero(idSuperHero: number): Observable<Subscription> {
     this.loader = true;
-    this.createEditService.dataSuperHero(Number(this.route.snapshot.paramMap.get('id')))
+    return of(this.createEditService.dataSuperHero(idSuperHero)
       .subscribe((result: SuperHero) => {
         this.superHero = result;
-        this.loader = false;
-      }), () => {
-        this.loader = false;
-      };
+        this.enabledFields = false;
+      }));
   }
 
   public routeGoBack(): void {
@@ -46,29 +57,40 @@ export class CreateEditComponent implements OnInit {
   public save(): void {
     this.loader = true;
 
-    forkJoin([
-      this.createEditService.deleteGallery(this.previewGalleryDelete),
-      this.createEditService.createUpdateSuperHero(this.superHero),
-    ]).pipe(
-      switchMap(
-        () => this.createEditService.dataSuperHero(Number(this.route.snapshot.paramMap.get('id')))
-      )
+    let auxObservables = [];
+    if (this.previewGalleryDelete.length) {
+      auxObservables.push(this.createEditService.deleteGallery(this.previewGalleryDelete));
+    }
+    auxObservables.push(this.createEditService.createUpdateSuperHero(this.superHero));
+
+    forkJoin(
+      auxObservables
     ).pipe(
-      switchMap(
-        (superHero: SuperHero) => this.createEditService.insertGallery(this.gallery)
-      )
+      switchMap((results: any) => {
+        results[0] !== null ? this.superHero.id = results[0] : this.superHero.id = results[1];
+
+        if (this.images && Object.values(this.images).length) {
+          Object.values(this.images).map((image: File) => {
+            this.formData.append('images', image, image.name);
+          });
+          this.formData.append('superHeroId', String(this.superHero.id));
+          return this.createEditService.insertGallery(this.formData);
+        }
+        return of(null);
+
+      })
+    ).pipe(
+      switchMap(() => {
+        return this.createEditService.dataSuperHero(this.superHero.id);
+      })
     ).subscribe((superHero: SuperHero) => {
       this.superHero = superHero;
+      this.statusPreviewGalleryDelete = [];
+      this.inputFile.nativeElement.value = null;
+      this.formData = new FormData();
       this.loader = false;
-      this.enabledFields = false;
-    }, () => {
-      this.loader = false;
+      this.route.snapshot.paramMap.get('id') ? this.enabledFields = false : this.router.navigate([`edit/${superHero.id}`]);
     });
-  }
-
-  public setGallery(imageUploaded: any) {
-    this.gallery.idSuperHero = this.superHero.id;
-    this.gallery.images = imageUploaded.target.files[0];
   }
 
   public previewDeleteGallery(id: number): void {
@@ -77,6 +99,10 @@ export class CreateEditComponent implements OnInit {
 
   public postponedDeleteGallery(id: number): void {
     this.previewGalleryDelete = this.previewGalleryDelete.filter((number: number) => number !== id);
+  }
+
+  public simulateInputFile(): void {
+    this.inputFile.nativeElement.click();
   }
 
 }

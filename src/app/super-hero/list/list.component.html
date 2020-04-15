@@ -1,9 +1,9 @@
-<div id="list-super-hero" class="container-fluid">
-  <div class="row vh-100 flex-grow-1">
+<div id="list-super-hero" class="container-fluid vh-100">
+  <div class="row">
     <c-header class="w-100"></c-header>
 
-    <main class="container-fluid d-flex flex-grow-1">
-      <div class="row flex-grow-1">
+    <main class="container-fluid">
+      <div class="row">
         <div class="col-12 col-sm-12 col-lg-12 mt-3">
           <div class="row">
             <div class="mt-2 mt-md-0 mt-lg-0 col-12 col-sm-3 col-md-2 container-add d-flex align-items-end">
@@ -14,6 +14,7 @@
               <i class="icon-search mr-2 position-absolute"></i>
               <input [ngModel]="search" (ngModelChange)="setSearch($event)" type="text"
                 class="w-100 position-relative text-uppercase font-weight-bold" />
+              <i *ngIf="search?.length" (click)="setSearch('')" class="icon-remove position-absolute"></i>
             </div>
             <div
               class="mt-4 mt-sm-0 col-12 col-sm-3 col-md-2 container-filter d-flex align-items-end justify-content-end">
@@ -32,23 +33,23 @@
           <div class="row">
             <c-card
               *ngFor="let superHero of listSuperHero | paginate: { itemsPerPage: 18, currentPage: currentPage, totalItems: totalElements }"
-              [superHero]="superHero" (actionClick)="$event.typeClick === 0 ? routeCreateEdit($event.id) : deleteSuperHero($event.id)"
+              [superHero]="superHero"
+              (actionClick)="$event === 0 ? routeCreateEdit(superHero.id) : deleteSuperHero(superHero.id, superHero.name)"
               class="col-6 col-sm-4 col-md-3 col-xl-2 mt-4">
             </c-card>
+            <label *ngIf="!listSuperHero.length" class="not-found w-100 text-center mt-5 pt-5">Nenhuma informação
+              encontrada</label>
           </div>
         </div>
 
 
         <div class="col-12 col-sm-12 mt-4 d-flex align-items-end justify-content-center">
           <div class="container-pagination">
-
             <pagination-controls (pageChange)="pageChanged($event)" maxSize="10" directionLinks="true" autoHide="true"
               responsive="true" previousLabel="Anterior" nextLabel="Próximo">
             </pagination-controls>
-
           </div>
         </div>
-
       </div>
     </main>
 
