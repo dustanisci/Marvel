@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { ApiService } from 'src/app/api-service/api-service.service';
 import { endpoints } from 'src/environments/endpoints';
 import { ListReponse, ListSuperHeroResponse, Filter } from './model/list-response';
-import { map } from 'rxjs/operators'
+import { map, catchError } from 'rxjs/operators'
+import { ModalErrorComponent } from '../component/modal/modal-error/modal-error.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ListService {
 
-  constructor(private apiService: ApiService) { }
+  constructor(private apiService: ApiService,
+    private modalService: NgbModal) { }
 
   public listSuperHero(page: number = 0, search: string = '', filter: Filter): Observable<object> {
 
@@ -39,11 +42,32 @@ export class ListService {
           totalElements: resp.totalElements,
           numberOfElements: resp.numberOfElements
         }
-      }));
+      })).pipe(
+        catchError(
+          () => {
+            const modalErrorRef = this.modalService.open(ModalErrorComponent, { size: 'md', centered: true });
+
+            modalErrorRef.componentInstance.msg = 'Ops, ocorreu um erro ao obter um super herói, contate o ADM.';
+            return of(modalErrorRef);
+          }
+        ));
   }
 
   public deleteSuperHero(ids: number[]): Observable<void> {
-    return this.apiService.delete(`${endpoints.superHero}`, ids);
+    return this.apiService.delete(`${endpoints.superHero}`, ids).pipe(
+      catchError(
+        (error: Response) => {
+          const modalErrorRef = this.modalService.open(ModalErrorComponent, { size: 'md', centered: true });
+
+          if (error.status === 404) {
+            modalErrorRef.componentInstance.msg = 'Ops, o super herói não foi encontrado para ser excluído.';
+
+            return of(modalErrorRef);
+          }
+          modalErrorRef.componentInstance.msg = 'Ops, ocorreu um erro ao excluir o super herói, tente novamente.';
+          return of(modalErrorRef);
+        }
+      ));
   }
 
 }

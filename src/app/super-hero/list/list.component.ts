@@ -3,7 +3,7 @@ import { ListSuperHero, ListResult } from './model/list-super-hero';
 import { ListService } from './list.service';
 import { Router } from '@angular/router';
 import { Filter } from './model/list-response';
-import { switchMap, catchError } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
 import { of, Observable, Subscription } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ModalConfirmComponent } from '../component/modal/modal-confirm/modal-confirm.component';
@@ -48,7 +48,7 @@ export class ListComponent implements OnInit {
 
   public deleteSuperHero(id: number, name: string): void {
     const modalConfirmRef = this.modalService.open(ModalConfirmComponent, { size: 'md', centered: true });
-    modalConfirmRef.componentInstance.msg = `Tem certeza que deseja excluir ${name}?`;
+    modalConfirmRef.componentInstance.msg = `Tem certeza que deseja realizar a exclusão de ${name}?`;
 
     modalConfirmRef.componentInstance.confirm
       .pipe(switchMap(() => {

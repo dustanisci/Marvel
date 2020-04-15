@@ -11,7 +11,8 @@ export class ModalErrorComponent {
   @Input() public action: () => void;
 
   constructor(public modal: NgbActiveModal) {
-    
+    this.action;
   }
+
 
 }

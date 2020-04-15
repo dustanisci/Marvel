@@ -4,8 +4,10 @@ import { CreateEditService } from './create-edit.service';
 import { SuperHero } from './model/super-hero';
 import { switchMap } from 'rxjs/operators';
 import { forkJoin, of, Observable, Subscription } from 'rxjs';
-import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
-import { ModalConfirmComponent } from '../component/modal/modal-confirm/modal-confirm.component';
+import { GalleryError } from './model/gallery-error';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalErrorComponent } from '../component/modal/modal-error/modal-error.component';
+import { ModalSaveComponent } from '../component/modal/modal-save/modal-save.component';
 
 @Component({
   selector: 'app-create-edit',
@@ -27,7 +29,8 @@ export class CreateEditComponent implements OnInit {
   constructor(
     private createEditService: CreateEditService,
     private router: Router,
-    public route: ActivatedRoute) { }
+    public route: ActivatedRoute,
+    private modalService: NgbModal) { }
 
   ngOnInit(): void {
     if (this.route.snapshot.paramMap.get('id')) {
@@ -66,15 +69,34 @@ export class CreateEditComponent implements OnInit {
     forkJoin(
       auxObservables
     ).pipe(
-      switchMap((results: any) => {
+      switchMap((results: any[]) => {
         results[0] !== null ? this.superHero.id = results[0] : this.superHero.id = results[1];
 
+        // Prepara o tipo de requisição como form-data para mandar a imagem
         if (this.images && Object.values(this.images).length) {
           Object.values(this.images).map((image: File) => {
             this.formData.append('images', image, image.name);
           });
+
+          // Dentro desse mesmo objeto de form-data, foi adicionado superHeroId
+          // Será possível o serviço capturar este atributo na requisição de form-data.
           this.formData.append('superHeroId', String(this.superHero.id));
-          return this.createEditService.insertGallery(this.formData);
+
+          return this.createEditService.insertGallery(this.formData).pipe(
+            switchMap((resp: any) => {
+              resp = (resp as GalleryError).errorList;
+
+              if (resp.length) {
+                resp = resp.toString().replace(',', ', ');
+
+                const modalErrorRef = this.modalService.open(ModalErrorComponent, { size: 'md', centered: true });
+                modalErrorRef.componentInstance.msg = `As imagens devem estar em um formato <b>*.jpg, *.jpeg ou *.png</b>.
+                </br>Foram identificado imagens com extensões inválidas:</br></br><b>${resp}.</b>`;
+              }
+
+              return of(null);
+            })
+          );
         }
         return of(null);
 
@@ -87,8 +109,11 @@ export class CreateEditComponent implements OnInit {
       this.superHero = superHero;
       this.statusPreviewGalleryDelete = [];
       this.inputFile.nativeElement.value = null;
+      this.images = null;
       this.formData = new FormData();
       this.loader = false;
+
+      this.modalService.open(ModalSaveComponent, { size: 'xs', centered: true });
       this.route.snapshot.paramMap.get('id') ? this.enabledFields = false : this.router.navigate([`edit/${superHero.id}`]);
     });
   }

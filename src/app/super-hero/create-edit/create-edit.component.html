@@ -7,7 +7,7 @@
     <div class="container-fluid d-flex flex-column align-items-stretch">
       <c-loader *ngIf="loader"></c-loader>
 
-      <div class="row flex-grow-1 align-items-center position-relative">
+      <div class="row flex-grow-1 align-items-center position-relative text-center">
         <div class="container-buttons position-absolute">
           <button *ngIf="!enabledFields || !route.snapshot.paramMap.get('id')" (click)="routeGoBack()" type="button"
             class="mr-2 btn btn-secondary">
@@ -44,7 +44,7 @@
 
           <div *ngIf="(!superHero.galleries || !(superHero.galleries | keyvalue).length) && enabledFields"
             (click)="simulateInputFile()"
-            class="upload-foto bg-white border border-dark mt-4 mb-4 d-flex align-items-center justify-content-center">
+            class="upload-foto bg-white border border-dark mt-4 mb-4 d-flex align-items-center justify-content-center" dnd (fileDropped)="images = $event">
             <i class="icon-upload-alt"></i>
           </div>
 

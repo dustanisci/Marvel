@@ -35,14 +35,14 @@ main {
       z-index   : 1;
     }
 
-    i.icon-remove{
-      right: 15px;
-      border: 2px solid var(--theme-black-light);
+    i.icon-remove {
+      right        : 15px;
+      border       : 2px solid var(--theme-black-light);
       border-radius: 39px;
-      padding: 5px 6px;
-      font-size: 9px;
-      margin-top: 4px;
-      cursor:pointer;
+      padding      : 5px 6px;
+      font-size    : 9px;
+      margin-top   : 4px;
+      cursor       : pointer;
     }
   }
 

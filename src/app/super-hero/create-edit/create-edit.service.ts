@@ -14,7 +14,6 @@ import { Router } from '@angular/router';
 })
 export class CreateEditService {
 
-
   constructor(
     private apiService: ApiService,
     private modalService: NgbModal,
@@ -26,16 +25,16 @@ export class CreateEditService {
       .pipe(
         catchError(
           (error: Response) => {
-            const modalErrorRef = this.modalService.open(ModalErrorComponent, { size : 'md', centered : true });
+            const modalErrorRef = this.modalService.open(ModalErrorComponent, { size: 'md', centered: true });
 
-            error.status === 404 ?
-              modalErrorRef.componentInstance.msg = 'Ops, super herói não encontrado.' :
-              modalErrorRef.componentInstance.msg = 'Ops, ocorreu um erro ao obter o super herói, tente novamente.';
-
+            if (error.status === 404) {
+              modalErrorRef.componentInstance.msg = 'Ops, o registro não foi encontrado.';
               modalErrorRef.componentInstance.action = () => {
                 this.router.navigate(['']);
               }
-
+              return of(modalErrorRef);
+            }
+            modalErrorRef.componentInstance.msg = 'Ops, ocorreu um erro ao obter o registro, tente novamente.';
             return of(modalErrorRef);
           }
         ));
@@ -47,15 +46,29 @@ export class CreateEditService {
         .pipe(
           catchError(
             () => {
-              return of(console.log('Ops, ocorreu um erro ao criar um super-herói!'));
+              const modalErrorRef = this.modalService.open(ModalErrorComponent, { size: 'md', centered: true });
+
+              modalErrorRef.componentInstance.msg = 'Ops, ocorreu um erro ao criar um registro, tente novamente.';
+              return of(modalErrorRef);
             }
-          ));;
+          ));
     }
+
     return this.apiService.put(endpoints.superHero, superhero)
       .pipe(
         catchError(
-          () => {
-            return of(console.log('Ops, ocorreu um erro ao atualizar um super-herói!'));
+          (error: Response) => {
+            const modalErrorRef = this.modalService.open(ModalErrorComponent, { size: 'md', centered: true });
+
+            if (error.status === 404) {
+              modalErrorRef.componentInstance.msg = 'Ops, o registro não foi encontrado.';
+              modalErrorRef.componentInstance.action = () => {
+                this.router.navigate(['']);
+              }
+              return of(modalErrorRef);
+            }
+            modalErrorRef.componentInstance.msg = 'Ops, ocorreu um erro ao atualizar um registro, tente novamente.';
+            return of(modalErrorRef);
           }
         ));
   }
@@ -65,7 +78,10 @@ export class CreateEditService {
       .pipe(
         catchError(
           () => {
-            return of(console.log('Ops, ocorreu um erro ao inserir alguma imagem do super-herói!'));
+            const modalErrorRef = this.modalService.open(ModalErrorComponent, { size: 'md', centered: true });
+
+            modalErrorRef.componentInstance.msg = 'Ops, ocorreu um erro ao inserir alguma imagem no registro, tente novamente.';
+            return of(modalErrorRef);
           }
         ));
   }
@@ -74,8 +90,18 @@ export class CreateEditService {
     return this.apiService.delete(endpoints.gallery, [ids])
       .pipe(
         catchError(
-          () => {
-            return of(console.log('Ops, ocorreu um erro ao excluir alguma imagem do super-herói!'));
+          (error: Response) => {
+            const modalErrorRef = this.modalService.open(ModalErrorComponent, { size: 'md', centered: true });
+
+            if (error.status === 404) {
+              modalErrorRef.componentInstance.msg = 'Ops, a imagem no registro não foi encontrada para ser excluída.';
+              modalErrorRef.componentInstance.action = () => {
+                this.router.navigate(['']);
+              }
+              return of(modalErrorRef);
+            }
+            modalErrorRef.componentInstance.msg = 'Ops, ocorreu um erro ao excluir alguma imagem do registro, tente novamente.';
+            return of(modalErrorRef);
           }
         ));
   }
