@@ -23,7 +23,7 @@ export class ListService {
     } else if (Number(filter) === Filter.DESC) {
       sort = 'sort=name,codename,DESC';
     } else if (Number(filter) === Filter.EARTH) {
-      sort = 'sort=earth,ASC';
+      sort = 'sort=earth,name,ASC';
     } else {
       sort = 'sort=id,DESC';
     }

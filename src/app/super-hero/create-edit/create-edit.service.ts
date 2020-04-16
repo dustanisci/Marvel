@@ -27,11 +27,12 @@ export class CreateEditService {
           (error: Response) => {
             const modalErrorRef = this.modalService.open(ModalErrorComponent, { size: 'md', centered: true });
 
+            modalErrorRef.componentInstance.action = () => {
+              // this.router.navigate(['']);
+            }
+
             if (error.status === 404) {
               modalErrorRef.componentInstance.msg = 'Ops, o registro não foi encontrado.';
-              modalErrorRef.componentInstance.action = () => {
-                this.router.navigate(['']);
-              }
               return of(modalErrorRef);
             }
             modalErrorRef.componentInstance.msg = 'Ops, ocorreu um erro ao obter o registro, tente novamente.';
