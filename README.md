@@ -11,5 +11,5 @@ Ao realizar a exclusão é apresentado um pop-up de confirmação e no ato da cr
   <li>TypeScript</li>
   <li>JavaScript</li>
   <li>Bootstrap</li>
-  <li>Webservice em Springboot <a href="https://github.com/dustanisci/api-marvel" target="_blank">(Neste repositório aqui)</a></li>
+  <li>Webservice em Springboot <a href="https://github.com/dustanisci/api-marvel" target="_blank">(Neste meu outro repositório)</a></li>
 </ul>
