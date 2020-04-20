@@ -15,7 +15,7 @@ Ao realizar a exclusão é apresentado um pop-up de confirmação e no ato da cr
 </ul>
 <br/>
 <b>Imagens do funcionamento</b>
-<br/>
+<br/><br/>
 <img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/1.jpg" />
 <br/>
 <img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/2.jpg" />
