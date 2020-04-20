@@ -1,5 +1,5 @@
-<b>Descrição: </b> Um exemplo de CRUD de super-heróis da Marvel no angular 9. </br>
-Possui uma listagem de super-heróis, cada página contém 24 cards e em seguida é feito uma paginação. Existe um rápido campo de busca e também filtros por categoria Terra, ordenação alfabética.</br>
+<b>Descrição: </b> Um exemplo de CRUD de super-heróis da Marvel no angular 9. </br></br>
+Possui uma listagem de super-heróis, cada página contém 24 cards e em seguida é feito uma paginação. Existe um rápido campo de busca e também filtros por categoria Terra, ordenação alfabética.</br></br>
 Ao realizar a exclusão é apresentado um pop-up de confirmação e no ato da criação consta um drag and drop de inserção de 1 ou mais fotos do respectivo super-herói. Ao realizar uma atualização ou criação é apresentado um pop-up salvo com sucesso.
 
 
