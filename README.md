@@ -13,3 +13,17 @@ Ao realizar a exclusão é apresentado um pop-up de confirmação e no ato da cr
   <li>Bootstrap</li>
   <li>Webservice em Springboot <a href="https://github.com/dustanisci/api-marvel" target="_blank">(Neste meu outro repositório)</a></li>
 </ul>
+
+Imagens do funcionamento
+<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/1.jpg" />
+<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/2.jpg" />
+<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/3.jpg" />
+<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/4.jpg" />
+<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/5.jpg" />
+<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/6.jpg" />
+<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/7.jpg" />
+<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/8.jpg" />
+<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/9.jpg" />
+<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/10.jpg" />
+<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/11.jpg" />
+<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/12.jpg" />
