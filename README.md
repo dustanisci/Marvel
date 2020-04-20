@@ -18,7 +18,7 @@ Ao gravar a criação ou atualização é mostrado um pop-up de salvo com sucess
   <li>TypeScript</li>
   <li>JavaScript</li>
   <li>Bootstrap</li>
-  <li>Webservice em Springboot <a href="https://github.com/dustanisci/api-marvel" target="_blank">(Neste meu outro repositório)</a></li>
+  <li>Webservice em Spring Boot <a href="https://github.com/dustanisci/api-marvel" target="_blank">(Neste meu outro repositório)</a></li>
 </ul>
 <br/>
 <b>Imagens do funcionamento</b>
