@@ -15,15 +15,27 @@ Ao realizar a exclusão é apresentado um pop-up de confirmação e no ato da cr
 </ul>
 
 Imagens do funcionamento
+<br/>
 <img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/1.jpg" />
+<br/>
 <img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/2.jpg" />
+<br/>
 <img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/3.jpg" />
+<br/>
 <img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/4.jpg" />
+<br/>
 <img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/5.jpg" />
+<br/>
 <img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/6.jpg" />
+<br/>
 <img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/7.jpg" />
+<br/>
 <img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/8.jpg" />
+<br/>
 <img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/9.jpg" />
+<br/>
 <img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/10.jpg" />
+<br/>
 <img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/11.jpg" />
+<br/>
 <img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/12.jpg" />
