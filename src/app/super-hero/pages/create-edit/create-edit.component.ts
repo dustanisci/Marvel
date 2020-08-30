@@ -6,8 +6,8 @@ import { switchMap } from 'rxjs/operators';
 import { forkJoin, of, Observable, Subscription } from 'rxjs';
 import { GalleryError } from './model/gallery-error';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalErrorComponent } from '../component/modal/modal-error/modal-error.component';
-import { ModalSaveComponent } from '../component/modal/modal-save/modal-save.component';
+import { ModalErrorComponent } from '../../components/modal/modal-error/modal-error.component';
+import { ModalSaveComponent } from '../../components/modal/modal-save/modal-save.component';
 
 @Component({
   selector: 'app-create-edit',

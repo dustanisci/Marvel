@@ -3,19 +3,19 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ListComponent } from './super-hero/list/list.component';
-import { CreateEditComponent } from './super-hero/create-edit/create-edit.component';
-import { CardComponent } from './super-hero/component/card/card.component';
+import { ListComponent } from './super-hero/pages/list/list.component';
+import { CreateEditComponent } from './super-hero/pages/create-edit/create-edit.component';
+import { CardComponent } from './super-hero/components/card/card.component';
 import { HttpClientModule } from '@angular/common/http';
-import { LoaderComponent } from './super-hero/component/loader/loader.component';
+import { LoaderComponent } from './super-hero/components/loader/loader.component';
 import { FormsModule } from '@angular/forms';
 import { NgxPaginationModule } from 'ngx-pagination';
-import { HeaderComponent } from './super-hero/component/header/header.component';
+import { HeaderComponent } from './super-hero/components/header/header.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { ModalSaveComponent } from './super-hero/component/modal/modal-save/modal-save.component';
-import { ModalErrorComponent } from './super-hero/component/modal/modal-error/modal-error.component';
-import { ModalConfirmComponent } from './super-hero/component/modal/modal-confirm/modal-confirm.component';
-import { DndDirective } from './super-hero/directive/dnd-directive';
+import { ModalSaveComponent } from './super-hero/components/modal/modal-save/modal-save.component';
+import { ModalErrorComponent } from './super-hero/components/modal/modal-error/modal-error.component';
+import { ModalConfirmComponent } from './super-hero/components/modal/modal-confirm/modal-confirm.component';
+import { DndDirective } from './super-hero/directives/dnd-directive';
 
 @NgModule({
   declarations: [

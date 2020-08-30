@@ -4,8 +4,8 @@ import { ApiService } from 'src/app/api-service/api-service.service';
 import { endpoints } from 'src/environments/endpoints';
 import { ListReponse, ListSuperHeroResponse, Filter } from './model/list-response';
 import { map, catchError } from 'rxjs/operators'
-import { ModalErrorComponent } from '../component/modal/modal-error/modal-error.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalErrorComponent } from '../../components/modal/modal-error/modal-error.component';
 
 @Injectable({
   providedIn: 'root'

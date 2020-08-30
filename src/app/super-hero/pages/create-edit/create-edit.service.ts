@@ -6,8 +6,8 @@ import { SuperHero } from './model/super-hero';
 import { HttpHeaders } from '@angular/common/http';
 import { catchError } from 'rxjs/operators';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalErrorComponent } from '../component/modal/modal-error/modal-error.component';
 import { Router } from '@angular/router';
+import { ModalErrorComponent } from '../../components/modal/modal-error/modal-error.component';
 
 @Injectable({
   providedIn: 'root'

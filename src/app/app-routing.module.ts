@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { CreateEditComponent } from './super-hero/create-edit/create-edit.component';
-import { ListComponent } from './super-hero/list/list.component';
+import { CreateEditComponent } from './super-hero/pages/create-edit/create-edit.component';
+import { ListComponent } from './super-hero/pages/list/list.component';
 
 
 const routes: Routes = [

@@ -6,7 +6,7 @@ import { Filter } from './model/list-response';
 import { switchMap } from 'rxjs/operators';
 import { of, Observable, Subscription } from 'rxjs';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ModalConfirmComponent } from '../component/modal/modal-confirm/modal-confirm.component';
+import { ModalConfirmComponent } from '../../components/modal/modal-confirm/modal-confirm.component';
 
 @Component({
   selector: 'app-list',
@@ -22,7 +22,7 @@ export class ListComponent implements OnInit {
   public search: string;
   public pagination: number[] = [];
   public totalElements: number;
-  public filter: Filter = Filter.NONE;
+  public filter: Filter;
 
   constructor(
     private listService: ListService,
@@ -31,6 +31,7 @@ export class ListComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentPage = 0;
+    this.filter = Number(sessionStorage.getItem('filter'));
     this.loader = true;
 
     this.dataSuperHero().subscribe(() => {
@@ -44,6 +45,10 @@ export class ListComponent implements OnInit {
       this.totalPages = listResult.totalPages;
       this.totalElements = listResult.totalElements;
     }));
+  }
+
+  public filterMemory(): void {
+    sessionStorage.setItem('filter', this.filter.toString());
   }
 
   public deleteSuperHero(id: number, name: string): void {

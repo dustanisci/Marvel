@@ -18,7 +18,7 @@
             </div>
             <div
               class="mt-4 mt-sm-0 col-12 col-sm-3 col-md-2 container-filter d-flex align-items-end justify-content-end">
-              <select [ngModel]="filter" (ngModelChange)="filter = $event; currentPage = 0; dataSuperHero();"
+              <select [ngModel]="filter" (ngModelChange)="filter = $event; currentPage = 0; dataSuperHero(); filterMemory();"
                 class="custom-select position-relative">
                 <option value="0">Selecione</option>
                 <option value="1">A-Z</option>

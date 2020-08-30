@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { ListSuperHero } from '../../list/model/list-super-hero';
+import { ListSuperHero } from '../../pages/list/model/list-super-hero';
 import { TypeClick } from './model/card-click';
 
 @Component({
