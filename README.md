@@ -23,26 +23,26 @@ Ao gravar a criação ou atualização é mostrado um pop-up de salvo com sucess
 <br/>
 <b>Imagens do funcionamento</b>
 <br/><br/>
-<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/1.jpg" />
+<img src="https://raw.githubusercontent.com/eduardostanisci/backup-image/master/marvel/1.jpg" />
 <br/>
-<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/2.jpg" />
+<img src="https://raw.githubusercontent.com/eduardostanisci/backup-image/master/marvel/2.jpg" />
 <br/>
-<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/3.jpg" />
+<img src="https://raw.githubusercontent.com/eduardostanisci/backup-image/master/marvel/3.jpg" />
 <br/>
-<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/4.jpg" />
+<img src="https://raw.githubusercontent.com/eduardostanisci/backup-image/master/marvel/4.jpg" />
 <br/>
-<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/5.jpg" />
+<img src="https://raw.githubusercontent.com/eduardostanisci/backup-image/master/marvel/5.jpg" />
 <br/>
-<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/6.jpg" />
+<img src="https://raw.githubusercontent.com/eduardostanisci/backup-image/master/marvel/6.jpg" />
 <br/>
-<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/7.jpg" />
+<img src="https://raw.githubusercontent.com/eduardostanisci/backup-image/master/marvel/7.jpg" />
 <br/>
-<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/8.jpg" />
+<img src="https://raw.githubusercontent.com/eduardostanisci/backup-image/master/marvel/8.jpg" />
 <br/>
-<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/9.jpg" />
+<img src="https://raw.githubusercontent.com/eduardostanisci/backup-image/master/marvel/9.jpg" />
 <br/>
-<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/10.jpg" />
+<img src="https://raw.githubusercontent.com/eduardostanisci/backup-image/master/marvel/10.jpg" />
 <br/>
-<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/11.jpg" />
+<img src="https://raw.githubusercontent.com/eduardostanisci/backup-image/master/marvel/11.jpg" />
 <br/>
-<img src="https://raw.githubusercontent.com/dustanisci/backup-image/master/marvel/12.jpg" />
+<img src="https://raw.githubusercontent.com/eduardostanisci/backup-image/master/marvel/12.jpg" />
